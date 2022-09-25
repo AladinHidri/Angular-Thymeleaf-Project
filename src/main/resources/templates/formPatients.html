@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+                xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+                layout:decorate="template1"
+>
+<head>
+    <meta charset="UTF-8">
+    <title>Form Patients</title>
+
+</head>
+<body>
+<!-- il appelle section layout:fragment="content1" du template1.html -->
+
+    <div layout:fragment="content1">
+        <div class="col-md-6 offset-3">
+            <div class="card mt-3 mb-3" style="color:#fff ;background-color: #6c757d ">
+                <div class="card-header">
+                    Ajouter un Patient
+                </div>
+            </div>
+        <form method="post" th:action="@{/admin/save}" >
+
+            <div class="mb-3" >
+                <label for="nom" class="form-label">Nom</label>
+                <input id="nom"  class="form-control" type = "text" name="nom" th:value="${patient.nom}">
+                <span  class ="text-danger"  th:errors="${patient.nom}"></span>
+            </div>
+
+            <div class="mb-3" >
+                <label  for ="date_de_naissance" class="form-label">Date Naissance</label>
+                <input  id ="date_de_naissance" class="form-control" type = "date" name="date_de_naissance" th:value="${patient.date_de_naissance}">
+                <span class ="text-danger" th:errors="${patient.date_de_naissance}"> ></span>
+            </div>
+
+            <div class="mb-3 form-check">
+                <label id="malade" class="form-label">Malade </label>
+                <input for="malade" class="form-check-input" type = "checkbox" name="malade" th:checked="${patient.malade}">
+                <span class ="text-danger" th:errors="${patient.malade}"></span>
+            </div>
+
+            <div class="mb-3">
+                <label id="score" class="form-label">Score</label>
+                <input for="score" class="form-control" type = "text" name="score" th:value="${patient.score}">
+                <span class ="text-danger" th:errors="${patient.score}"></span>
+
+            </div>
+            <button type="submit" class="btn btn-primary">Save</button>
+            <a th:href="@{index}" class="btn btn-secondary">Retourner</a>
+
+        </form>
+    </div>
+</div>
+
+</body>
+</html>
